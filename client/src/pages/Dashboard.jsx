@@ -17,7 +17,6 @@ import {
 
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
-
 import TaskCard from "../components/TaskCard";
 import TaskModal from "../components/taskModal";
 import EditTaskModal from "../components/EditTaskModal";
@@ -533,8 +532,6 @@ const Dashboard = () => {
                 duration-300
             "
     >
-      <Navbar />
-
       {/* =================================================
                 MAIN
             ================================================= */}

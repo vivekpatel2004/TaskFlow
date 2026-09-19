@@ -30,7 +30,6 @@ import { useAuth } from "../context/AuthContext";
 import ProfileCard from "../components/profile/ProfileCard";
 import ProfileView from "../components/profile/ProfileView";
 import ProfileForm from "../components/profile/ProfileForm";
-
 const EMPTY_PROFILE = {
     id: "",
     name: "",
@@ -769,8 +768,6 @@ const Profile = () => {
 
     return (
         <div className="min-h-screen bg-[#f7f8fc] text-slate-900 dark:bg-[#070b16] dark:text-white">
-            <Navbar />
-
             <main className="px-4 py-8 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-6xl">
 
