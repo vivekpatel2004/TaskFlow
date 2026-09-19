@@ -17,7 +17,6 @@ import {
 
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
-import Navbar from "../components/home/HomeNavbar";
 
 import TaskCard from "../components/TaskCard";
 import TaskModal from "../components/taskModal";

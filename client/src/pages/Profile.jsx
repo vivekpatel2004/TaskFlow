@@ -30,7 +30,6 @@ import { useAuth } from "../context/AuthContext";
 import ProfileCard from "../components/profile/ProfileCard";
 import ProfileView from "../components/profile/ProfileView";
 import ProfileForm from "../components/profile/ProfileForm";
-import Navbar from "../components/home/HomeNavbar";
 
 const EMPTY_PROFILE = {
     id: "",
