@@ -9,7 +9,8 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 
 import ProtectedRoute from "./components/ProtectedRoute";
-import ThemeToggle from "./components/ThemeToggle";
+
+import HomeNavbar from "./components/home/HomeNavbar";
 
 import {
     NotificationProvider,
@@ -21,14 +22,15 @@ function App() {
     return (
         <NotificationProvider>
             <BrowserRouter>
-                {/* Global theme button */}
-                <ThemeToggle />
 
-                {/* Global notifications */}
+                {/* ONE GLOBAL NAVBAR */}
+                <HomeNavbar />
+
+                {/* GLOBAL NOTIFICATIONS */}
                 <Notification />
 
                 <Routes>
-                    {/* Public Routes */}
+
                     <Route
                         path="/"
                         element={<Home />}
@@ -44,7 +46,6 @@ function App() {
                         element={<Home />}
                     />
 
-                    {/* Protected Routes */}
                     <Route
                         element={<ProtectedRoute />}
                     >
@@ -58,7 +59,9 @@ function App() {
                             element={<Profile />}
                         />
                     </Route>
+
                 </Routes>
+
             </BrowserRouter>
         </NotificationProvider>
     );

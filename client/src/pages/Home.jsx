@@ -6,7 +6,6 @@ import {
     useNavigate,
 } from "react-router-dom";
 
-import HomeNavbar from "../components/home/HomeNavbar";
 import HeroSection from "../components/home/HeroSection";
 import ProductPreview from "../components/home/ProductPreview";
 import FeaturesSection from "../components/home/FeaturesSection";
@@ -177,18 +176,7 @@ const Home = () => {
     return (
         <div className="min-h-screen bg-white text-slate-900 dark:bg-[#070b16] dark:text-white">
 
-            <HomeNavbar
-                mobileMenuOpen={mobileMenuOpen}
-                setMobileMenuOpen={
-                    setMobileMenuOpen
-                }
-                openAuth={openAuth}
-                closeAuth={closeAuth}
-                scrollToSection={
-                    scrollToSection
-                }
-            />
-
+           
             <main>
                 <HeroSection
                     isAuthPage={isAuthPage}

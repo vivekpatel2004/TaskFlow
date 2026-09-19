@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Plus,
@@ -10,17 +10,14 @@ import {
   CircleDot,
   ListTodo,
   CalendarClock,
-  ChevronDown,
-  User,
-  LogOut,
   LayoutDashboard,
   TrendingUp,
   AlertCircle,
 } from "lucide-react";
 
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
+import Navbar from "../components/home/HomeNavbar";
 
 import TaskCard from "../components/TaskCard";
 import TaskModal from "../components/taskModal";
@@ -250,9 +247,7 @@ const MonitoringItem = ({
 ========================================================= */
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   const [tasks, setTasks] = useState([]);
 
@@ -270,8 +265,6 @@ const Dashboard = () => {
 
   const [showFilters, setShowFilters] = useState(false);
 
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -279,8 +272,6 @@ const Dashboard = () => {
   const [selectedTask, setSelectedTask] = useState(null);
 
   const [deletingTaskId, setDeletingTaskId] = useState(null);
-
-  const profileMenuRef = useRef(null);
 
   /* =====================================================
        FETCH TASKS
@@ -543,233 +534,7 @@ const Dashboard = () => {
                 duration-300
             "
     >
-      {/* =================================================
-                NAVBAR
-            ================================================= */}
-
-      <header
-        className="
-                    sticky
-                    top-0
-                    z-50
-                    border-b
-                    border-slate-200/80
-                    dark:border-slate-800
-                    bg-white/90
-                    dark:bg-slate-950/90
-                    backdrop-blur-xl
-                "
-      >
-        <div
-          className="
-                        mx-auto
-                        flex
-                        h-[72px]
-                        max-w-7xl
-                        items-center
-                        justify-between
-                        px-5
-                        sm:px-8
-                    "
-        >
-          {/* LOGO */}
-
-          <button
-            type="button"
-            onClick={() => navigate("/dashboard")}
-            className="
-                            flex
-                            items-center
-                            gap-3
-                        "
-          >
-            <div
-              className="
-                                flex
-                                h-10
-                                w-10
-                                items-center
-                                justify-center
-                                rounded-xl
-                                bg-gradient-to-br
-                                from-violet-500
-                                to-indigo-600
-                                shadow-lg
-                                shadow-indigo-500/20
-                            "
-            >
-              <span className="text-white text-lg">✦</span>
-            </div>
-
-            <span
-              className="
-                                text-xl
-                                font-extrabold
-                                tracking-tight
-                                text-slate-900
-                                dark:text-white
-                            "
-            >
-              TaskFlow
-            </span>
-          </button>
-
-          {/* RIGHT */}
-
-          <div
-            ref={profileMenuRef}
-            className="
-                            relative
-                            flex
-                            items-center
-                            gap-2
-                        "
-          >
-            <button
-              type="button"
-              onClick={() => setIsProfileMenuOpen((prev) => !prev)}
-              className="
-                                hidden
-                                sm:flex
-                                items-center
-                                gap-2
-                                rounded-xl
-                                border
-                                border-slate-200
-                                dark:border-slate-700
-                                bg-white
-                                dark:bg-slate-900
-                                px-3
-                                py-2
-                                text-sm
-                                font-semibold
-                                text-slate-700
-                                dark:text-slate-300
-                                transition
-                                hover:border-indigo-200
-                                hover:text-indigo-600
-                                dark:hover:border-indigo-700
-                            "
-            >
-              <User size={16} />
-
-              <span>{user?.name || "Profile"}</span>
-
-              <ChevronDown size={15} />
-            </button>
-
-            <button
-              type="button"
-              onClick={handleLogout}
-              title="Logout"
-              className="
-                                flex
-                                h-10
-                                w-10
-                                items-center
-                                justify-center
-                                rounded-xl
-                                border
-                                border-slate-200
-                                dark:border-slate-700
-                                bg-white
-                                dark:bg-slate-900
-                                text-slate-500
-                                dark:text-slate-400
-                                transition
-                                hover:border-red-200
-                                hover:bg-red-50
-                                hover:text-red-600
-                                dark:hover:border-red-900
-                                dark:hover:bg-red-950/40
-                            "
-            >
-              <LogOut size={17} />
-            </button>
-
-            {/* PROFILE MENU */}
-
-            {isProfileMenuOpen && (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: -5,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                className="
-                                    absolute
-                                    right-0
-                                    top-14
-                                    z-50
-                                    w-52
-                                    overflow-hidden
-                                    rounded-2xl
-                                    border
-                                    border-slate-200
-                                    dark:border-slate-700
-                                    bg-white
-                                    dark:bg-slate-900
-                                    shadow-xl
-                                    shadow-slate-900/10
-                                    dark:shadow-black/30
-                                "
-              >
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsProfileMenuOpen(false);
-
-                    navigate("/profile");
-                  }}
-                  className="
-                                        flex
-                                        w-full
-                                        items-center
-                                        gap-3
-                                        px-4
-                                        py-3
-                                        text-left
-                                        text-sm
-                                        font-medium
-                                        text-slate-700
-                                        dark:text-slate-300
-                                        hover:bg-slate-50
-                                        dark:hover:bg-slate-800
-                                    "
-                >
-                  <User size={17} />
-                  My Profile
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="
-                                        flex
-                                        w-full
-                                        items-center
-                                        gap-3
-                                        px-4
-                                        py-3
-                                        text-left
-                                        text-sm
-                                        font-medium
-                                        text-red-600
-                                        hover:bg-red-50
-                                        dark:hover:bg-red-950/30
-                                    "
-                >
-                  <LogOut size={17} />
-                  Logout
-                </button>
-              </motion.div>
-            )}
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       {/* =================================================
                 MAIN

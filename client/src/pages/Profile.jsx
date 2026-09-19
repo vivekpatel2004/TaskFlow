@@ -11,7 +11,6 @@ import {
 } from "framer-motion";
 
 import {
-    ArrowLeft,
     AlertCircle,
     Camera,
     CheckCircle2,
@@ -31,6 +30,7 @@ import { useAuth } from "../context/AuthContext";
 import ProfileCard from "../components/profile/ProfileCard";
 import ProfileView from "../components/profile/ProfileView";
 import ProfileForm from "../components/profile/ProfileForm";
+import Navbar from "../components/home/HomeNavbar";
 
 const EMPTY_PROFILE = {
     id: "",
@@ -769,97 +769,11 @@ const Profile = () => {
     // ==========================================
 
     return (
-        <div className="min-h-screen bg-[#f7f8fc] px-4 py-8 text-slate-900 dark:bg-[#070b16] dark:text-white sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-6xl">
+        <div className="min-h-screen bg-[#f7f8fc] text-slate-900 dark:bg-[#070b16] dark:text-white">
+            <Navbar />
 
-                {/* TOP ACTIONS */}
-
-                <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-
-                    <button
-                        type="button"
-                        onClick={() =>
-                            navigate(
-                                "/dashboard"
-                            )
-                        }
-                        className="inline-flex w-fit items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200"
-                    >
-                        <ArrowLeft
-                            size={17}
-                        />
-
-                        Back to Dashboard
-                    </button>
-
-                    {!editing ? (
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setEditing(
-                                    true
-                                );
-
-                                setError("");
-                                setSuccess("");
-                            }}
-                            className="inline-flex w-fit items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-900"
-                        >
-                            <Pencil
-                                size={17}
-                            />
-
-                            Edit Profile
-                        </button>
-                    ) : (
-                        <div className="flex gap-3">
-
-                            <button
-                                type="button"
-                                onClick={
-                                    handleCancel
-                                }
-                                className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold dark:border-slate-700 dark:bg-slate-900"
-                            >
-                                <X
-                                    size={17}
-                                />
-
-                                Cancel
-                            </button>
-
-                            <button
-                                type="submit"
-                                form="profile-form"
-                                disabled={
-                                    saving
-                                }
-                                className="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white disabled:opacity-60"
-                            >
-                                {saving ? (
-                                    <>
-                                        <Loader2
-                                            size={17}
-                                            className="animate-spin"
-                                        />
-
-                                        Saving...
-                                    </>
-                                ) : (
-                                    <>
-                                        <Save
-                                            size={17}
-                                        />
-
-                                        Save Changes
-                                    </>
-                                )}
-                            </button>
-
-                        </div>
-                    )}
-
-                </div>
+            <main className="px-4 py-8 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-6xl">
 
                 {/* ALERTS */}
 
@@ -1173,7 +1087,8 @@ const Profile = () => {
                     </ProfileCard>
                 )}
 
-            </div>
+                </div>
+            </main>
 
             {/* DELETE CONFIRMATION MODAL */}
 
