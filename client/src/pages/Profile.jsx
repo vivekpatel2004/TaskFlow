@@ -1007,6 +1007,17 @@ const Profile = () => {
 
                             </div>
 
+                            {!editing && (
+                                <button
+                                    type="button"
+                                    onClick={() => setEditing(true)}
+                                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-indigo-700"
+                                >
+                                    <Pencil size={16} />
+                                    Edit Profile
+                                </button>
+                            )}
+
                         </div>
 
                     </div>
