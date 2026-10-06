@@ -249,6 +249,20 @@ const ProfileForm = ({
 
                 </div>
             </ProfileCard>
+            
+            {/* ================================= */}
+            {/* SAVE CHANGES */}
+            {/* ================================= */}
+
+            <div className="flex justify-end gap-3">
+                <button
+                    type="submit"
+                    className="inline-flex items-center justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700"
+                >
+                    Save Changes
+                </button>
+            </div>
+
 
         </div>
     );
